@@ -248,7 +248,7 @@ def run_render_job(payload: dict) -> dict:
         concat_cmd = [
             "ffmpeg", "-y", "-threads", "28",
             "-f", "concat", "-safe", "0", "-i", list_file_path,
-            "-c:v", "copy", "-c:a", "aac",
+            "-c:v", "libx264", "-preset", "ultrafast", "-crf", "28", "-c:a", "aac", "-b:a", "128k",
             final_output_path,
         ]
         subprocess.run(concat_cmd, check=True, capture_output=True, text=True)
