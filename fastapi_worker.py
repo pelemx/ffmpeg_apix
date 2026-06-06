@@ -1,7 +1,7 @@
 import os
 
-FFMPEG_BIN_DIR = "/home/stable-diffusion-webui/ffmpeg-bin/ffmpeg-7.0.2-amd64-static/"
-os.environ["PATH"] = FFMPEG_BIN_DIR + os.pathsep + os.environ.get("PATH", "")
+#FFMPEG_BIN_DIR = "/home/stable-diffusion-webui/ffmpeg-bin/ffmpeg-7.0.2-amd64-static/"
+#os.environ["PATH"] = FFMPEG_BIN_DIR + os.pathsep + os.environ.get("PATH", "")
 
 import subprocess
 import requests
