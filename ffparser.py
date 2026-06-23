@@ -1,13 +1,15 @@
+import os
+
+# Konfigurasi Path FFmpeg (Wajib sebelum impor pustaka lain yang menggunakan ffmpeg)
 FFMPEG_BIN_DIR = "/home/stable-diffusion-webui/ffmpeg-bin/ffmpeg-7.0.2-amd64-static/"
 os.environ["PATH"] = FFMPEG_BIN_DIR + os.pathsep + os.environ.get("PATH", "")
-import os
+
 import subprocess
 import shutil
 import zipfile
 import httpx
 from fastapi import FastAPI, UploadFile, File, Form, BackgroundTasks, HTTPException
 import uvicorn
-
 app = FastAPI(title="Sharx Dedicated HLS Parser")
 
 # Ruang kerja spesifik di dalam direktori saat ini
@@ -34,7 +36,7 @@ def process_and_forward(input_file_path: str, folder_name: str, target_api_url: 
         "-sc_threshold", "0",         # Matikan deteksi pergantian scene
         "-c:a", "aac", "-b:a", "128k",
         "-f", "hls", 
-        "-hls_time", "2",             # Potong segmen TS setiap 2 detik
+        "-hls_time", "10",             # Potong segmen TS setiap 2 detik
         "-hls_list_size", "0",
         "-hls_segment_filename", segment_pattern, 
         playlist_file
